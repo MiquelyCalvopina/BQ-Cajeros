@@ -1,5 +1,4 @@
 
-
   .menu {
     background-color: #050c06;
     /* Green */
@@ -19,6 +18,8 @@
 
   .data {
     background: rgb(173, 168, 168);
+    width: 100%;
+    height: 450px;
 
   }
 
@@ -42,12 +43,28 @@
 
   .info {
     color: black;
+  
+    width: 50%;
   }
 
-  th,
-  td {
-    width: 25%;
+  th,td {
+   border-color:black 12px;
+    width: 12%;
+    height: 50px;
   }
-
+.cuerpo{
+  width: 80%;
   
 
+}
+.cabecera{
+  width: 100%;
+  height: 100px;
+ 
+}
+.head{
+  width: 100%;
+  height: 30%;
+  background: rgb(173, 168, 168);
+ 
+}

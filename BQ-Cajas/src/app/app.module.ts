@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { IniciaSesionModule } from './inicia-sesion/inicia-sesion.module';
 import { SharedModule } from './shared/shared.module';
 import { TransaccionComponent } from './pago-tarjeta/transaccion/transaccion.component';
+import { InformacionComponent } from './informacion/informacion.component';
+import { RetiroComponent } from './retiro/retiro.component';
+import { DepositoComponent } from './deposito/deposito.component';
 import { TransaccionpComponent } from './pago-prestamo/transaccionp/transaccionp.component';
 import { AutentificacionComponent } from './inicia-sesion/autentificacion/autentificacion.component';
 
@@ -13,6 +16,9 @@ import { AutentificacionComponent } from './inicia-sesion/autentificacion/autent
 const routes: Routes = [
   { path: 'tarjeta', component: TransaccionComponent },
   { path: 'prestamo', component: TransaccionpComponent },
+  { path: 'informacion', component: InformacionComponent },
+  { path: 'retiro', component: RetiroComponent },
+  { path: 'deposito', component: DepositoComponent },
   { path: 'login', component: AutentificacionComponent }
 
 ];
