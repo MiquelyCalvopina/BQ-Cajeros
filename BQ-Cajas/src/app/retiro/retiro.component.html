@@ -32,6 +32,7 @@
             <div class="data">
               <p></p>
               <p></p>
+              <form>
               <table>
                 <tr> 
                   <td><label>Saldo Actual</label></td>
@@ -40,8 +41,7 @@
                 <tr>
                   <td><label>tipo de cuenta</label></td>
                   <td><label>Ahorros</label></td>
-                  <td rowspan="3"><label>Firma</label><br>
-                  <img src='../../assets/images/identity/firma.png' style='height: 55%; width: 55%;'></td>
+    
                 </tr>
                 <tr>
                   <td><label>Cantidad a retirar</label></td>
@@ -50,13 +50,24 @@
                 <td><input value='256'>$</td>
              </tr>
              <tr>
+               <br>
+              <button
+              (click)="enviar()"
+              style="width: 40%; height: 40px;"
+              mat-raised-button
+              
+              class="btn btn-danger pull-right"
+            >
+              Aceptar
+            </button>
            </tr>
            <tr>
       
          </tr>
               </table>
+            </form>
             </div>
-
+         
           </div>
         </div>
       </div>
