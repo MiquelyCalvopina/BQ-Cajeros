@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Retiro } from '../Model/Retiro';
-import {ServiceRetiro}from '../Service/retiro/service.retiro';
+import { Retiro } from '../../../Model/Retiro';
+import {ServiceRetiro}from '../../Service/retiro/service.retiro';
 
 
 @Component({

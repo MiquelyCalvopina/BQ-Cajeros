@@ -1,0 +1,66 @@
+<div class="d-md-flex h-md-100 align-items-center">
+  <div class="col-md-6 bg-gray h-md-100">
+    <div
+      class="
+        d-md-flex
+        align-items-center
+        h-100
+        p-5
+        text-center
+        justify-content-center
+      "
+    >
+      <div class="logoarea pt-5 pb-5">
+        <a routerLink="/home">          
+            <img
+              src="../../../../assets/images/identity/LOGO-BLANCO.png"
+              width="50%"
+              alt="logo del banco"
+            />
+            <h1 class="white">
+            Banco BanQuito
+          </h1>
+        </a>        
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 p-0 h-md-100 align-items-center">
+    <div class="d-md-flex align-items-center h-md-100 justify-content-center">
+      <form method="POST">
+        <h3 class="form-title">Sistema de cajeros en agencias bancarias</h3>
+        <div class="form-group">
+          <label for="user">Usuario</label>
+          <input
+            type="text"
+            [(ngModel)]="user"
+            class="form-control"
+            id="user"
+            name="user"
+            required
+          />
+          <small id="userlHelp" class="form-text text-muted"
+            ></small
+          >
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            class="form-control"
+            id="password"
+            required
+          />
+        </div>
+        <div class="align-center">
+          <br />
+          <button type="submit" (click)="send()" class="btn btn-red">
+            Acceder
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

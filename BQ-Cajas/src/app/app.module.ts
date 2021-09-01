@@ -1,41 +1,41 @@
-import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import {FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { IniciaSesionModule } from './inicia-sesion/inicia-sesion.module';
+import { AutentificacionComponent } from './components/autentificacion/autentificacion.component'
 import { SharedModule } from './shared/shared.module';
-import { TransaccionComponent } from './pago-tarjeta/transaccion/transaccion.component';
-import { InformacionComponent } from './informacion/informacion.component';
-import { RetiroComponent } from './retiro/retiro.component';
-import { DepositoComponent } from './deposito/deposito.component';
-import { TransaccionpComponent } from './pago-prestamo/transaccionp/transaccionp.component';
-import { AutentificacionComponent } from './inicia-sesion/autentificacion/autentificacion.component';
-
-
-const routes: Routes = [
-  { path: 'tarjeta', component: TransaccionComponent },
-  { path: 'prestamo', component: TransaccionpComponent },
-  { path: 'informacion', component: InformacionComponent },
-  { path: 'retiro', component: RetiroComponent },
-  { path: 'deposito', component: DepositoComponent },
-  { path: 'login', component: AutentificacionComponent }
-
-];
+import { TransaccionComponent } from './components/transaccion/transaccion.component';
+import { InformacionComponent } from './components/informacion/informacion.component';
+import { RetiroComponent } from './components/retiro/retiro.component';
+import { DepositoComponent } from './components/deposito/deposito.component';
+import { TransaccionpComponent } from './components/transaccionp/transaccionp.component';
+import { HttpClientModule } from '@angular/common/http';
+import {ToastModule} from 'primeng/toast';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TransaccionComponent,
+    InformacionComponent,
+    RetiroComponent,
+    DepositoComponent,
+    TransaccionpComponent,
+    AutentificacionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    IniciaSesionModule,
-    RouterModule.forRoot(routes)
-  ],exports: [RouterModule],
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    ToastModule,
+    BrowserAnimationsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
 
+export class AppModule { }

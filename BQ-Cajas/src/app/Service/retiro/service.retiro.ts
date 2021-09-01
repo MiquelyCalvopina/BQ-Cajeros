@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { Retiro } from '../../Model/Retiro';
+import { Retiro } from '../../../Model/Retiro';
 
 @Injectable({
   providedIn: 'root'

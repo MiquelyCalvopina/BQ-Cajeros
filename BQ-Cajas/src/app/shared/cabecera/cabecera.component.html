@@ -1,10 +1,32 @@
-
-
-<header>
-  <div>
-    <img src="../../../assets/images/identity/LOGO-BLANCO.png" width="100" height="100" ALIGN=LEFT>
-    <br ALIGN=LEFT >BANCO BANQUITO
+<div class="row header">
+  <div class="col-5 navbar-brand">
+    <a routerLink=".">
+      <img
+        src="../../../assets/images/identity/LOGO-BLANCO.png"
+        height="60px"
+        alt="Logo del banco"
+      />
+      Banco BanQuito
+    </a>
   </div>
-   
-  </header>
-  
+  <div class="col session-navbar">
+    <div class="row h-100">
+      <div class="col-9 my-auto">
+        <a routerLink=".">
+          <p style="text-transform: uppercase">
+        <i class="pi pi-user"></i>        
+          {{ user ? user.name : "Guest" }}
+        </p>
+      </a>
+      </div>
+      <div class="col my-auto mx-4">
+        <a routerLink="/login">
+          <p>
+          <i class="pi pi-sign-out" style="font-size: 1.2rem"></i>
+          salir
+        </p>
+        </a>
+      </div>
+    </div>    
+  </div>
+</div>

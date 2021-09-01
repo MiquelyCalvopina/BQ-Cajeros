@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CabeceraComponent implements OnInit {
 
+  public user: any;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.user = history.state.user;
   }
 
 }
