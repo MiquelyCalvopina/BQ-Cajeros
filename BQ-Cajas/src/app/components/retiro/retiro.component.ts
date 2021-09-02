@@ -9,14 +9,16 @@ import {ServiceRetiro}from '../../Service/retiro/service.retiro';
   styleUrls: ['./retiro.component.css']
 })
 export class RetiroComponent implements OnInit {
-  retiro:Retiro = new Retiro();
+  retiroSave:Retiro = new Retiro();
   constructor(private service:ServiceRetiro) { }
 
   ngOnInit(): void {
   }
   enviar(){
-    this.service.createRetiro(this.retiro)
+    console.table(this.retiroSave)
+    this.service.createRetiro(this.retiroSave)
     .subscribe(data=>{
+      console.log("retiroo: "+data)
       alert("Se Envio con Exito...!!!");
     })
   }

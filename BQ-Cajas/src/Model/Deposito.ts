@@ -1,8 +1,8 @@
-export class Retiro{
+export class Deposito{
     cuentaId!:String
     cuentaSalida:String=''
     descripcion!:String
-    tipo:String='RET'
+    tipo:String='DEP'
     monto!:Number
     codTransaccion!:Number
     saldoAnterior!:Number

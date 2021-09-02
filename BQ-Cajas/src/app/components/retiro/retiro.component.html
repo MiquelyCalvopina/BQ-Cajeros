@@ -25,12 +25,26 @@
                   <td>
                     <label class="info"
                       >Número de cedula: <input type="text" name="cedula"
-                    /></label>
+                    />
+                    <input 
+                    [(ngModel)]="retiroSave.tipo"
+                    hidden 
+                    
+                    name="tipo"
+                    />
+                  </label>
                   </td>
                   <td>
                     <label class="info"
-                      >Número de cuenta: <input type="text" name="cedula"
-                    /></label>
+                      >Número de cuenta: <input type="text" 
+                      [(ngModel)]="retiroSave.cuentaId"
+                    name='cuentaId'
+                    />
+                    <input  type="hidden" 
+                    [(ngModel)]="retiroSave.cuentaSalida"
+                  name='cuentaSalida'
+                  />
+                  </label>
                   </td>
                   <td><button>VERIFICAR</button></td>
                 </tr>
@@ -54,7 +68,21 @@
                     <td><label>Cantidad a retirar</label></td>
                   </tr>
                   <tr>
-                    <td><input value="256" />$</td>
+                    
+                    <td>
+                      <input                    
+                    [(ngModel)]="retiroSave.monto"
+                    name='monto'  />$</td>
+                  </tr>
+                  <tr>
+                    <td><label>Descripcion</label></td>
+                  </tr>
+                  <tr>
+                    
+                    <td>
+                      <input                    
+                    [(ngModel)]="retiroSave.descripcion"
+                    name='descripcion'  /></td>
                   </tr>
                   <tr>
                     <br />

@@ -26,8 +26,21 @@
                   <td><label>Para:</label></td>
                 </tr>
                 <tr>
+                  <input 
+                  [(ngModel)]="depositoSave.tipo"
+                  hidden 
+                  
+                  name="tipo"
+                  />
+                  <input  type="hidden" 
+                  [(ngModel)]="depositoSave.cuentaSalida"
+                name='cuentaSalida'
+                />
                   <td><label>Cuenta a depositar</label></td>
-                  <td><input /></td>
+                  <td><input
+                    [(ngModel)]="depositoSave.cuentaId"
+                    name='cuentaId'
+                    /></td>
                   <td><label>Nro cedula depositante</label></td>
                   <td><input value="1723226690" /></td>
                 </tr>
@@ -39,13 +52,34 @@
                     </select>
                   </td>
                   <td><label>Cantidad</label></td>
-                  <td><input value="250 $" /></td>
+                  <td><input 
+                    [(ngModel)]="depositoSave.monto"
+                    name='monto'
+                    /></td>
 
                   <p></p>
                   <hr width="100%" />
                   <p>
                     <tr></tr>
                   </p>
+                </tr>
+                <tr>
+                    
+                  <td>
+                    <input                    
+                  [(ngModel)]="depositoSave.descripcion"
+                  name='descripcion'  /></td>
+                </tr>
+                <tr>
+                  <br />
+                  <button
+                    (click)="enviar()"
+                    style="width: 40%; height: 40px"
+                    mat-raised-button
+                    class="btn btn-danger pull-right"
+                  >
+                    Aceptar
+                  </button>
                 </tr>
               </table>
             </div>
