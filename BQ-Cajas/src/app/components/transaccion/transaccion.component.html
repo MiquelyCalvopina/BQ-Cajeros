@@ -1,79 +1,52 @@
-<app-cabecera></app-cabecera>
-<div class="main-content">
-  <div class="">
-    <div class="">
-      <div class="row">
-        <div class="col-lg col-md-12">
-          <div class="card">
-            <div class="opciones">
-              <a class="menu" routerLink="/informacion"
-                >INFORMACION DEL CLIENTE</a
-              >
-              <a class="menu" routerLink="/prestamo">PAGO CUOTAS PRESTAMO</a>
-              <a class="menu" routerLink="/tarjeta">PAGO TARJETA DE CRÉDITO </a>
-              <a class="menu" routerLink="/retiro">RETIRO</a>
-              <a class="menu" routerLink="/deposito">DEPOSTO</a>
-              <p></p>
-              <hr width="100%" />
-              <p></p>
-            </div>
-
-            <div class="data">
-              <table>
-                <tr>
-                  <td>
-                    <label class="info"
-                      >Número de tarjeta: <input type="text" name="tarjeta"
-                    /></label>
-                  </td>
-                  <td></td>
-                  <td>
-                    <label class="info"
-                      >Número de cedula: <input type="text" name="cedula"
-                    /></label>
-                  </td>
-                  <td><button>VERIFICAR</button></td>
-                  <td>
-                    <label class="info"
-                      >Deuda: <input type="text" name="deuda"
-                    /></label>
-                  </td>
-                </tr>
-              </table>
-            </div>
-
-            <div class="data">
-              <p></p>
-              <p></p>
-              <table>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <tr>
-                  <td></td>
-
-                  <td>
-                    <label class="info"
-                      >Pago Realizado: <input type="text" name="monto "
-                    /></label>
-                  </td>
-                </tr>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <tr>
-                  <td></td>
-                  <td><button>ACEPTAR</button></td>
-
-                  <td><button>CANCELAR</button></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+<p-toast position="top-right"></p-toast>
+<div class="col-12 screen-content">
+  <div class="row">
+    <div class="col">
+      <p>Número de cedula:</p>
+      <br>
+      <p>Número de tarjeta:</p>
+    </div>    
+    <div class="col">
+      <input type="text" name="identification " [(ngModel)]="identification" class="form-control" (keydown.Tab)="onIdentification($event)"/>
+      <br>
+      <input type="text" name="card" [(ngModel)]="tarjeta" class="form-control" (keydown.Tab)="onCarNumber($event)"/>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary" (click)="send()">VERIFICAR</button>
+    </div>
+    <div class="col" style="text-align: right;">
+      <p>Deuda:</p>
+    </div>
+    <div class="col">
+      <input
+        type="text"
+        name="deuda"
+        value="21.51"
+        class="form-control"
+        readonly
+      />
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <p>Pago realizado</p>
+    </div>
+    <div class="col">
+      <input type="text" name="monto " class="form-control" />
+    </div>
+    <div class="col"></div>
+    <div class="col"></div>
+    <div class="col"></div>
+  </div>
+  <br />
+  <br />
+  <div class="row" style="text-align: center">
+    <div class="col">
+      <button class="btn btn-primary">ACEPTAR</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-outline-danger">CANCELAR</button>
     </div>
   </div>
 </div>

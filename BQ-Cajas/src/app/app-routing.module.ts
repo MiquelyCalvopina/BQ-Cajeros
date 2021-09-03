@@ -6,19 +6,27 @@ import { AutentificacionComponent } from './components/autentificacion/autentifi
 import { TransaccionpComponent } from './components/transaccionp/transaccionp.component';
 import { TransaccionComponent } from './components/transaccion/transaccion.component';
 import { RetiroComponent } from './components/retiro/retiro.component';
+import { ContainerComponent } from './container/container.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'tarjeta', component: TransaccionComponent },
-  { path: 'prestamo', component: TransaccionpComponent },
-  { path: 'informacion', component: InformacionComponent },
-  { path: 'retiro', component: RetiroComponent },
-  { path: 'deposito', component: DepositoComponent },
-  { path: 'login', component: AutentificacionComponent }
+  { path: 'login', component: AutentificacionComponent},
+  {
+    path: 'system',
+    component: ContainerComponent,
+    children: [
+      { path: '', redirectTo: 'info', pathMatch: 'full' },
+      { path: 'info', component: InformacionComponent },
+      { path: 'cuote-payment', component: TransaccionpComponent },
+      { path: 'credit-payment', component: TransaccionComponent },
+      { path: 'withdrawal', component: RetiroComponent },
+      { path: 'deposit', component: DepositoComponent },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

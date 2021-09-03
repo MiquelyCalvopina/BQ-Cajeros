@@ -10,15 +10,28 @@ a {
 
 .header {
   background-color: #810000;
-  color: white;  
+  color: white;
+  margin: 0;
 }
 
-.session-navbar{
+.session-navbar {
   align-items: center;
   text-align: right;
 }
 
-.navbar-nav{
+.navbar-nav {
   flex-direction: row;
   width: 20%;
+}
+
+@media (max-width: 768px) {
+  .collapsable {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {  
+  .collapsable {
+    display: block;
+  }
 }

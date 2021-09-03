@@ -1,103 +1,73 @@
-<app-cabecera></app-cabecera>
 <p-toast position="top-right"></p-toast>
-<div class="main-content">
-  <div class="">
-    <div class="">
-      <div class="row">
-        <div class="col-lg col-md-12">
-          <div class="card">
-            <div class="opciones">
-              <a class="menu" routerLink=".">INFORMACION DEL CLIENTE</a>
-              <a class="menu" routerLink="/prestamo">PAGO CUOTAS PRESTAMO</a>
-              <a class="menu" routerLink="/tarjeta">PAGO TARJETA DE CRÉDITO </a>
-              <a class="menu" routerLink="/retiro">RETIRO</a>
-              <a class="menu" routerLink="/deposito">DEPOSTO</a>
-              <p></p>
-              <hr width="100%" />
-              <p></p>
-            </div>
-
-            <div class="head">
-              <table class="cabecera">
-                <tr>
-                  <td></td>
-                  <td>
-                    <label class="info"
-                      >Número de cedula:
-                      <input
-                        type="text"
-                        name="cedula"
-                        [(ngModel)]="identification"
-                        (keydown.Tab)="onKey($event)"
-                    /></label>
-                  </td>
-                  <td></td>
-                  <td><button>VERIFICAR</button></td>
-                </tr>
-              </table>
-            </div>
-
-            <div class="data">
-              <h3>Informacion del Cliente</h3>
-              <p></p>
-              <table class="cuerpo">
-                <tr>
-                  <td><label>Nombres</label></td>
-                  <td><label class="info">Carlos Ramiro</label></td>
-                  <td><label>Direccion</label></td>
-                  <td><label class="info">Quito-Tumbaco</label></td>
-                </tr>
-                <tr>
-                  <td><label>Apellidos</label></td>
-                  <td><label class="info">Villarreal Mendieta</label></td>
-                  <td><label>Estado Civil</label></td>
-                  <td><label class="info">Soltero</label></td>
-                </tr>
-                <tr>
-                  <td><label>Fecha de Nacimiento</label></td>
-                  <td><label class="info">06/09/97</label></td>
-                  <td><label>Celular</label></td>
-                  <td><label class="info">098798565</label></td>
-                </tr>
-                <tr>
-                  <td><label>Correo</label></td>
-                  <td><label class="info">terrycarlos@live.com</label></td>
-                </tr>
-                <p></p>
-                <hr width="100%" />
-                <p>
-                  <tr>
-                    <td><label>Cuentas</label></td>
-                  </tr>
-
-                  <tr>
-                    <td><label>Ahorros</label></td>
-                    <td><label>Gana Diario</label></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <select name="cars" id="cars">
-                        <option value="volvo">1231324564</option>
-                        <option value="saab">45645646</option>
-                        <option value="mercedes">45646546</option>
-                        <option value="audi">54564654</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select name="cars" id="cars">
-                        <option value="volvo">546546545445</option>
-                        <option value="saab">45645646</option>
-                        <option value="mercedes">45646546</option>
-                        <option value="audi">54564654</option>
-                      </select>
-                    </td>
-                  </tr>
-                </p>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="col-12 screen-content">
+  <div class="row">
+    <div class="col">
+      <p style="text-align: right">Número de cedula:</p>
+    </div>
+    <div class="col-4">
+      <input
+        type="text"
+        class="form-control"
+        name="cedula"
+        [(ngModel)]="identification"
+        (keydown.Tab)="onKey($event)"
+      />
+    </div>
+    <div class="col-2">
+      <button class="btn btn-primary" (click)="send()">VERIFICAR</button>
     </div>
   </div>
+  <br />
+  <div class="row" style="color: #810000">
+    <h4>Informacion del Cliente</h4>
+  </div>
+  <div class="row">
+    <div class="col bold">
+      <p>Nombres</p>
+      <p>Apellidos</p>
+      <p>Fecha de nacimiento</p>
+      <p>Correo</p>
+    </div>
+    <div class="col">
+      <p>Carlos Ramiro</p>
+      <p>Villarreal Mendieta</p>
+      <p>06/09/97</p>
+      <p>terrycarlos@live.com</p>
+    </div>
+    <div class="col bold">
+      <p>Dirección</p>
+      <p>Estado civil</p>
+      <p>Celular</p>
+    </div>
+    <div class="col">
+      <p>Quito-Tumbaco</p>
+      <p>Soltero</p>
+      <p>098798565</p>
+    </div>
+  </div>
+  <hr />
+  <div class="row" style="color: #810000">
+    <h5>Cuentas</h5>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <p>Ahorros</p>
+      <select name="cars" class="form-select">
+        <option value="volvo">1231324564</option>
+        <option value="saab">45645646</option>
+        <option value="mercedes">45646546</option>
+        <option value="audi">54564654</option>
+      </select>
+    </div>
+    <div class="col-4">
+      <p>Gana Diario</p>
+      <select name="cars" class="form-select">
+        <option value="volvo">546546545445</option>
+        <option value="saab">45645646</option>
+        <option value="mercedes">45646546</option>
+        <option value="audi">54564654</option>
+      </select>
+    </div>    
+  </div>    
+  <br>
 </div>

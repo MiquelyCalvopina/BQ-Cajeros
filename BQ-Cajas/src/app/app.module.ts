@@ -13,6 +13,9 @@ import { TransaccionpComponent } from './components/transaccionp/transaccionp.co
 import { HttpClientModule } from '@angular/common/http';
 import {ToastModule} from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FooterComponent } from './shared/footer/footer.component';
+import { ContainerComponent } from './container/container.component';
+import {TabMenuModule} from 'primeng/tabmenu';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RetiroComponent,
     DepositoComponent,
     TransaccionpComponent,
-    AutentificacionComponent
+    AutentificacionComponent,
+    FooterComponent,
+    ContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule,
     ToastModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TabMenuModule    
   ],
   providers: [],
   bootstrap: [AppComponent]
