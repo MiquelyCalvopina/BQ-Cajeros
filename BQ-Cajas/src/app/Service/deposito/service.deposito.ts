@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Deposito } from '../../../Model/Deposito';
+import { constants } from '../../constants';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +9,10 @@ import { Deposito } from '../../../Model/Deposito';
 export class ServiceDeposito {
   
   constructor(private http:HttpClient) { }
-  Url="http://52.146.55.208:8004/api/transaccion";
+  url = constants.pasivesApi.url;  
   
   createDeposito(deposito:Deposito){
-    return this.http.post<Deposito>(this.Url,deposito);
+    return this.http.post<Deposito>(this.url+'transaccion',deposito);
   }
  
   

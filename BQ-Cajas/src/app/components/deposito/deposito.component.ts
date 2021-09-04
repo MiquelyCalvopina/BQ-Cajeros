@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { Deposito } from '../../../Model/Deposito';
 import { ServiceDeposito } from '../../Service/deposito/service.deposito';
 
@@ -6,10 +7,18 @@ import { ServiceDeposito } from '../../Service/deposito/service.deposito';
   selector: 'app-deposito',
   templateUrl: './deposito.component.html',
   styleUrls: ['./deposito.component.css'],
+  providers: [MessageService],
+  host: {
+    '(document:keypress)': 'handleKeyboardEvent($event)',
+  },
 })
 export class DepositoComponent implements OnInit {
   depositoSave: Deposito = new Deposito();
-  constructor(private service: ServiceDeposito) {}
+  identification!: string;
+  constructor(
+    private service: ServiceDeposito,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {}
   enviar() {

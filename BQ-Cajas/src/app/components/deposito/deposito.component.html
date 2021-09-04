@@ -1,87 +1,129 @@
-<app-cabecera></app-cabecera>
-<div class="main-content">
-  <div class="">
+<p-toast position="top-right"></p-toast>
+<div class="row-12 screen-content">
+  <div class="col-6">
+    <div><h5 style="color: #810000">Para</h5></div>
+    <div class="form-group row">
+      <p for="outterAccount" class="col-5">Cuenta a depositar</p>
+      <div class="col">
+        <input type="text" class="form-control" name="outterAccount" />
+      </div>
+    </div>
+    <div class="input-group">
+      <p class="col-6">Monto</p>
+      <div class="input-group-prepend">
+        <div class="input-group-text">$</div>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        id="inlineFormInputGroupUsername"
+        placeholder="00.00"
+      />
+    </div>
+  </div>
+  <div class="col">
+    <div><h5 style="color: #810000">Desde</h5></div>
+    <div class="form-group row">
+      <label for="cedula" class="col-5 col-form-label">Cédula</label>
+      <div class="col">
+        <input
+          #cedula
+          [(ngModel)]="identification"
+          type="text"
+          name="cedula"
+          class="form-control"
+          style="width: 12rem"
+        />
+        <input hidden name="tipo" />
+      </div>
+    </div>
+  </div>
+
+  <app-cabecera></app-cabecera>
+  <div class="main-content">
     <div class="">
-      <div class="row">
-        <div class="col-lg col-md-12">
-          <div class="card">
-            <div class="opciones">
-              <a class="menu" routerLink="/informacion"
-                >INFORMACION DEL CLIENTE</a
-              >
-              <a class="menu" routerLink="/prestamo">PAGO CUOTAS PRESTAMO</a>
-              <a class="menu" routerLink="/tarjeta">PAGO TARJETA DE CRÉDITO </a>
-              <a class="menu" routerLink="/retiro">RETIRO</a>
-              <a class="menu" routerLink="/deposito">DEPOSTO</a>
-              <p></p>
-              <hr width="100%" />
-              <p></p>
-            </div>
+      <div class="">
+        <div class="row">
+          <div class="col-lg col-md-12">
+            <div class="card">
+              <div class="opciones">
+                <a class="menu" routerLink="/informacion"
+                  >INFORMACION DEL CLIENTE</a
+                >
+                <a class="menu" routerLink="/prestamo">PAGO CUOTAS PRESTAMO</a>
+                <a class="menu" routerLink="/tarjeta"
+                  >PAGO TARJETA DE CRÉDITO
+                </a>
+                <a class="menu" routerLink="/retiro">RETIRO</a>
+                <a class="menu" routerLink="/deposito">DEPOSTO</a>
+                <p></p>
+                <hr width="100%" />
+                <p></p>
+              </div>
 
-            <div class="data">
-              <p></p>
-              <p></p>
-              <table>
-                <tr>
-                  <td><label>Para:</label></td>
-                </tr>
-                <tr>
-                  <input 
-                  [(ngModel)]="depositoSave.tipo"
-                  hidden 
-                  
-                  name="tipo"
-                  />
-                  <input  type="hidden" 
-                  [(ngModel)]="depositoSave.cuentaSalida"
-                name='cuentaSalida'
-                />
-                  <td><label>Cuenta a depositar</label></td>
-                  <td><input
-                    [(ngModel)]="depositoSave.cuentaId"
-                    name='cuentaId'
-                    /></td>
-                  <td><label>Nro cedula depositante</label></td>
-                  <td><input value="1723226690" /></td>
-                </tr>
-                <tr>
-                  <td><label>Tipo de Cuenta</label></td>
-                  <td>
-                    <select style="width: 165px">
-                      <option value="26">ahorros</option>
-                    </select>
-                  </td>
-                  <td><label>Cantidad</label></td>
-                  <td><input 
-                    [(ngModel)]="depositoSave.monto"
-                    name='monto'
-                    /></td>
+              <div class="data">
+                <p></p>
+                <p></p>
+                <table>
+                  <tr>
+                    <td><label>Para:</label></td>
+                  </tr>
+                  <tr>
+                    <input [(ngModel)]="depositoSave.tipo" hidden name="tipo" />
+                    <input
+                      type="hidden"
+                      [(ngModel)]="depositoSave.cuentaSalida"
+                      name="cuentaSalida"
+                    />
+                    <td><label>Cuenta a depositar</label></td>
+                    <td>
+                      <input
+                        [(ngModel)]="depositoSave.cuentaId"
+                        name="cuentaId"
+                      />
+                    </td>
+                    <td><label>Nro cedula depositante</label></td>
+                    <td><input value="1723226690" /></td>
+                  </tr>
+                  <tr>
+                    <td><label>Tipo de Cuenta</label></td>
+                    <td>
+                      <select style="width: 165px">
+                        <option value="26">ahorros</option>
+                      </select>
+                    </td>
+                    <td><label>Cantidad</label></td>
+                    <td>
+                      <input [(ngModel)]="depositoSave.monto" name="monto" />
+                    </td>
 
-                  <p></p>
-                  <hr width="100%" />
-                  <p>
-                    <tr></tr>
-                  </p>
-                </tr>
-                <tr>
-                    
-                  <td>
-                    <input                    
-                  [(ngModel)]="depositoSave.descripcion"
-                  name='descripcion'  /></td>
-                </tr>
-                <tr>
-                  <br />
-                  <button
-                    (click)="enviar()"
-                    style="width: 40%; height: 40px"
-                    mat-raised-button
-                    class="btn btn-danger pull-right"
-                  >
-                    Aceptar
-                  </button>
-                </tr>
-              </table>
+                    <p></p>
+                    <hr width="100%" />
+                    <p>
+                      <tr></tr>
+                    </p>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                        [(ngModel)]="depositoSave.descripcion"
+                        name="descripcion"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <br />
+                    <button
+                      (click)="enviar()"
+                      style="width: 40%; height: 40px"
+                      mat-raised-button
+                      class="btn btn-danger pull-right"
+                    >
+                      Aceptar
+                    </button>
+                  </tr>
+                </table>
+              </div>
             </div>
           </div>
         </div>

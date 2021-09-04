@@ -10,6 +10,7 @@ export class AutentificacionComponent implements OnInit {
 
   user!: string;
   password!: string;
+  
   constructor(
     private router: Router
   ) { }
@@ -20,6 +21,6 @@ export class AutentificacionComponent implements OnInit {
   send(){
     console.log(this.user + " : " + this.password);
     let user = {username: this.user, password: this.password, name: "miquely estefany calvopiña jacome"};
-    this.router.navigate(['/informacion'], { state: { user } });
+    this.router.navigate(['/system/info']);
   }
 }
