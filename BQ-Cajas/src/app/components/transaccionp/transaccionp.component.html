@@ -14,7 +14,7 @@
       />
     </div>
     <div class="col-2">
-      <button class="btn btn-primary" (click)="send()">VERIFICAR</button>
+      <button class="btn btn-primary" (click)="enviar()">VERIFICAR</button>
     </div>
   </div>
   <br />
@@ -65,12 +65,20 @@
   <br />
   <hr />
   <br>
-  <div class="row" style="text-align: center;">
-    <div class="col">
-      <button class="btn btn-outline-danger">CANCELAR</button>
+  <div class="row p-3 justify-content-end">
+    <div class="col-3" style="text-align: right">
+      <button
+        (click)="limpiar()"
+        mat-raised-button
+        class="btn btn-outline-danger"
+      >
+        Cancelar
+      </button>
     </div>
-    <div class="col">
-      <button class="btn btn-primary">ACEPTAR</button>
+    <div class="col-3" style="text-align: right">
+      <button (click)="enviar()" mat-raised-button class="btn btn-primary">
+        Aceptar
+      </button>
     </div>
   </div>
 </div>

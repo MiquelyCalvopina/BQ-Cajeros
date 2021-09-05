@@ -12,7 +12,8 @@
             name="cedula"
             class="form-control"
             style="width: 12rem"
-            (keydown.enter)="getClientTab($event)"
+            (keydown.enter)="verificar()"
+            required
           />
           <input [(ngModel)]="retiroSave.tipo" hidden name="tipo" />
         </div>
@@ -40,15 +41,15 @@
       </div>
     </div>
     <div class="col-2">
-      <button (click)="verificar()" class="btn btn-primary my-auto">
+      <button (click)="verificar()" tabindex="-1" class="btn btn-primary my-auto">
         VERIFICAR
       </button>
     </div>
   </div>
   <br />
 
-  <div class="row" *ngFor="let account of accounts">
-    <h6 style="color: #810000">{{ account.cuentaTipo }}</h6>
+  <div class="row my-3" *ngFor="let account of accounts">
+    <h5 style="color: #810000">{{ account.cuentaTipo }}</h5>
     <div class="col-3">
       <input
         type="radio"
@@ -75,36 +76,44 @@
         />
       </div>
     </div>
-    <br>
+    <br />
+  </div>
+
+  <div class="row my-3">
+    <div><b>Cantidad a retirar</b></div>
+  </div>
+  <div class="input-group pago" style="width: 30%;">
+    <div class="input-group-prepend">
+      <span class="input-group-text">$</span>
+    </div>
+    <input
+      #monto
+      type="text"
+      class="form-control"
+      aria-label="Amount (to the nearest dollar)"
+      [(ngModel)]="retiroSave.monto"
+      name="monto"
+      (keydown.Enter)="enviar()"
+    />
   </div>
 
   <br />
   <div class="row">
-    <div><b>Cantidad a retirar</b></div>
-    <div class="input-group pago">
-      <div class="input-group-prepend">
-        <span class="input-group-text">$</span>
+    <div class="row p-3 justify-content-end">
+      <div class="col-3" style="text-align: right">
+        <button
+          (click)="limpiar()"
+          mat-raised-button
+          class="btn btn-outline-danger"
+        >
+          Cancelar
+        </button>
       </div>
-      <input
-        #monto
-        type="text"
-        class="form-control"
-        aria-label="Amount (to the nearest dollar)"
-        [(ngModel)]="retiroSave.monto"
-        name="monto"
-        (keydown.enter)="enviar()"
-      />
+      <div class="col-3" style="text-align: right">
+        <button (click)="enviar()" mat-raised-button class="btn btn-primary">
+          Aceptar
+        </button>
+      </div>
     </div>
-  </div>
-  <br />
-  <div class="row">
-    <button
-      (click)="enviar()"
-      style="width: 40%; height: 40px"
-      mat-raised-button
-      class="btn btn-primary"
-    >
-      Aceptar
-    </button>
   </div>
 </div>

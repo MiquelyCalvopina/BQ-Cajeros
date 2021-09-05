@@ -22,5 +22,18 @@ export class ClientsService {
       }
     );
   }
+
+  getClientByID(id: string) {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    console.log(
+      this.url + 'cliente/' + id + '/'
+    );
+    return this.httpClient.get(
+      this.url + 'cliente/' + id + '/',
+      {
+        headers: headers,
+      }
+    );
+  }
   
 }

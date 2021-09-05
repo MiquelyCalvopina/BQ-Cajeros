@@ -15,8 +15,8 @@ import { ServiceRetiro } from '../../Service/retiro/service.retiro';
   },
 })
 export class RetiroComponent implements OnInit {
-  retiroSave: Retiro = new Retiro();  
-  accounts: any = [];  
+  retiroSave: Retiro = new Retiro();
+  accounts: any = [];
   currentBalance: string = '';
   identification: string = '';
   @ViewChild('cedula') private cedula!: ElementRef;
@@ -33,7 +33,7 @@ export class RetiroComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  clearWindow() {
+  limpiar() {
     this.retiroSave = new Retiro();
     this.accounts = [];
     this.cedula.nativeElement.value = '';
@@ -44,29 +44,25 @@ export class RetiroComponent implements OnInit {
 
   handleKeyboardEvent(event: KeyboardEvent) {
     if (event.key == '*') {
-      this.clearWindow();
+      this.limpiar();
     }
-  }
-
-  getClientTab(event: any) {
-    this.getClient(this.identification);
   }
 
   getAccountTab(event: any) {}
 
   verificar() {
-    console.log("ident:"+this.identification);
-    console.log("cuenta:"+this.retiroSave.cuentaId);
+    console.log('ident:' + this.identification);
+    console.log('cuenta:' + this.retiroSave.cuentaId);
     if (this.identification == '' && this.retiroSave.cuentaId != null) {
       this.getProduct(this.retiroSave.cuentaId);
     } else if (this.identification != '' && this.retiroSave.cuentaId == null) {
-      this.getClient(this.identification);
-    } else if (this.identification != '' && this.retiroSave.cuentaId == null) {
-      console.log(this.retiroSave.cuentaId);
+      this.getClient();
+    } else if (this.identification != '' && this.retiroSave.cuentaId != null) {
+      this.getProduct(this.retiroSave.cuentaId);
     }
   }
 
-  getClient(id: string) {
+  getClient() {
     this.clientService.getClient('CED', this.identification).subscribe(
       (res) => {
         console.log('CLIENTE IDENTIFICADO: ' + JSON.stringify(res));
@@ -88,22 +84,30 @@ export class RetiroComponent implements OnInit {
       (res) => {
         console.log('PRODUCTOS: ' + JSON.stringify(res));
         var products: any = { ...res };
-        for (let product of Object.keys(products)) {
-          console.log(products[product]);
-          var type =
-            products[product].productoPasivo.codProductoPasivo == 'GAN'
-              ? 'Cuenta ahorros'
-              : 'Cuenta ganadiario';
-          var productObj = {
-            cuentaTipo: type,
-            cuentaId: products[product].cuentaId,
-            saldo: products[product].saldoDisponible,
-          };
-          console.log(productObj);
-          this.accounts.push(productObj);
+        if (!products[0]) {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'El cliente no tiene cuentas para realizar el retiro',
+          });
+        } else {
+          for (let product of Object.keys(products)) {
+            console.log(products[product]);
+            var type =
+              products[product].productoPasivo.codProductoPasivo == 'GAN'
+                ? 'Cuenta ahorros'
+                : 'Cuenta ganadiario';
+            var productObj = {
+              cuentaTipo: type,
+              cuentaId: products[product].cuentaId,
+              saldo: products[product].saldoDisponible,
+            };
+            console.log(productObj);
+            this.accounts.push(productObj);
+          }
+          console.log('AHORRO:' + JSON.stringify(this.accounts[0]));
+          console.log('GANADIARIO:' + JSON.stringify(this.accounts[1]));
         }
-        console.log('AHORRO:' + JSON.stringify(this.accounts[0]));
-        console.log('GANADIARIO:' + JSON.stringify(this.accounts[1]));
       },
       (err) => {
         this.messageService.add({
@@ -142,8 +146,24 @@ export class RetiroComponent implements OnInit {
       }
     );
   }
-  
+
   enviar() {
+    this.service.createRetiro(this.retiroSave).subscribe(
+      (res) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Retiro',
+          detail: 'Registrado exitosamente',
+        });
+      },
+      (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Retiro',
+          detail: err.error.detail,
+        });
+      }
+    );
     console.log('RETIRO:' + JSON.stringify(this.retiroSave));
   }
 }

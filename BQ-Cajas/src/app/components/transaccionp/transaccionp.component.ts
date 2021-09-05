@@ -24,13 +24,17 @@ export class TransaccionpComponent implements OnInit {
     });
   }
 
-  send() {
+  enviar() {
     console.log('enviar peticion: ' + this.identification);
     this.messageService.add({
       severity: 'warn',
       summary: 'Consulta',
       detail: 'Buscando cliente con CI ' + this.identification,
     });
+  }
+
+  limpiar(){
+    this.identification = "";
   }
 
 }

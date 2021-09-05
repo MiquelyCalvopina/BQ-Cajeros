@@ -3,18 +3,30 @@
   <div class="row">
     <div class="col">
       <p>Número de cedula:</p>
-      <br>
+      <br />
       <p>Número de tarjeta:</p>
-    </div>    
-    <div class="col">
-      <input type="text" name="identification " [(ngModel)]="identification" class="form-control" (keydown.Tab)="onIdentification($event)"/>
-      <br>
-      <input type="text" name="card" [(ngModel)]="tarjeta" class="form-control" (keydown.Tab)="onCarNumber($event)"/>
     </div>
     <div class="col">
-      <button class="btn btn-primary" (click)="send()">VERIFICAR</button>
+      <input
+        type="text"
+        name="identification "
+        [(ngModel)]="identification"
+        class="form-control"
+        (keydown.Enter)="onIdentification($event)"        
+      />
+      <br />
+      <input
+        type="text"
+        name="card"
+        [(ngModel)]="tarjeta"
+        class="form-control"
+        (keydown.Enter)="onCarNumber($event)"
+      />
     </div>
-    <div class="col" style="text-align: right;">
+    <div class="col">
+      <button class="btn btn-primary" (click)="enviar()">VERIFICAR</button>
+    </div>
+    <div class="col" style="text-align: right">
       <p>Deuda:</p>
     </div>
     <div class="col">
@@ -27,7 +39,7 @@
       />
     </div>
   </div>
-  <hr>
+  <hr />
   <div class="row">
     <div class="col">
       <p>Pago realizado</p>
@@ -41,12 +53,20 @@
   </div>
   <br />
   <br />
-  <div class="row" style="text-align: center">
-    <div class="col">
-      <button class="btn btn-primary">ACEPTAR</button>
+  <div class="row p-3 justify-content-end">
+    <div class="col-3" style="text-align: right">
+      <button
+        (click)="limpiar()"
+        mat-raised-button
+        class="btn btn-outline-danger"
+      >
+        Cancelar
+      </button>
     </div>
-    <div class="col">
-      <button class="btn btn-outline-danger">CANCELAR</button>
+    <div class="col-3" style="text-align: right">
+      <button (click)="enviar()" mat-raised-button class="btn btn-primary">
+        Aceptar
+      </button>
     </div>
   </div>
 </div>

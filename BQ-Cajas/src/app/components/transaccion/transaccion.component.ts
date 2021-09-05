@@ -33,7 +33,7 @@ export class TransaccionComponent implements OnInit {
     });
   }
 
-  send() {
+  enviar() {
     if (this.tarjeta == null && this.identification != null) {
       console.log('enviar peticion: ' + this.identification);
       this.messageService.add({
@@ -48,5 +48,9 @@ export class TransaccionComponent implements OnInit {
         detail: 'Buscando cedula con número ' + this.tarjeta,
       });
     }
+  }
+
+  limpiar(){
+    
   }
 }
