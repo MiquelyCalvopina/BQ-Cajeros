@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { ClientsService } from 'src/app/Service/Cliente/clientes.service';
+import { ClientsService } from 'src/app/Service/Cliente/service.cliente';
 import { ProductsService } from 'src/app/Service/Productos/products.service';
 import { Client } from 'src/Model/Client';
 import { Retiro } from 'src/Model/Retiro';
