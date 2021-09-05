@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { ClientsService } from 'src/app/Service/Cliente/service.cliente';
+import { ClientsService } from 'src/app/Service/Cliente/clientService.service';
 import { ProductsService } from 'src/app/Service/Productos/products.service';
 import { Client } from 'src/Model/Client';
 import { Retiro } from 'src/Model/Retiro';
@@ -13,7 +13,7 @@ import { Retiro } from 'src/Model/Retiro';
 })
 export class InformacionComponent implements OnInit {
   identification!: string;
-  public client!: Client;
+  client!: Client;
   retiroSave!: Retiro;
   accounts: any = [];
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { ClientsService } from 'src/app/Service/Cliente/clientes.service';
+import { ClientsService } from 'src/app/Service/Cliente/clientService.service';
 import { ProductsService } from 'src/app/Service/Productos/products.service';
 import { Client } from 'src/Model/Client';
 import { Deposito } from '../../../Model/Deposito';
@@ -13,7 +13,7 @@ import { ServiceDeposito } from '../../Service/deposito/service.deposito';
   providers: [MessageService],
   host: {
     '(document:keypress)': 'handleKeyboardEvent($event)',
-  },
+  }
 })
 export class DepositoComponent implements OnInit {
   depositoSave!: Deposito; 

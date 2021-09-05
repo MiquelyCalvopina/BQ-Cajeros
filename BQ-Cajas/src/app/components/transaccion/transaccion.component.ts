@@ -6,6 +6,9 @@ import { MessageService } from 'primeng/api';
   templateUrl: './transaccion.component.html',
   styleUrls: ['./transaccion.component.css'],
   providers: [MessageService],
+  host: {
+    '(document:keypress)': 'handleKeyboardEvent($event)',
+  }
 })
 export class TransaccionComponent implements OnInit {
   identification!: string;
@@ -47,6 +50,12 @@ export class TransaccionComponent implements OnInit {
         summary: 'Consulta',
         detail: 'Buscando cedula con número ' + this.tarjeta,
       });
+    }
+  }
+
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.key == '*') {
+      this.limpiar();
     }
   }
 

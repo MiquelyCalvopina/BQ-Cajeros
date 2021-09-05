@@ -15,7 +15,7 @@ import { ServiceRetiro } from '../../Service/retiro/service.retiro';
   },
 })
 export class RetiroComponent implements OnInit {
-  retiroSave: Retiro = new Retiro();
+  retiroSave!: Retiro;
   accounts: any = [];
   currentBalance: string = '';
   identification: string = '';
@@ -31,7 +31,9 @@ export class RetiroComponent implements OnInit {
     private productsService: ProductsService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.retiroSave  = new Retiro();
+  }
 
   limpiar() {
     this.retiroSave = new Retiro();

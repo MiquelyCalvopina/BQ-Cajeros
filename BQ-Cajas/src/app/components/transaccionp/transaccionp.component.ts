@@ -5,7 +5,10 @@ import { MessageService } from 'primeng/api';
   selector: 'app-transaccionp',
   templateUrl: './transaccionp.component.html',
   styleUrls: ['./transaccionp.component.css'],
-  providers: [MessageService]
+  providers: [MessageService],
+  host: {
+    '(document:keypress)': 'handleKeyboardEvent($event)',
+  }
 })
 export class TransaccionpComponent implements OnInit {
 
@@ -33,6 +36,12 @@ export class TransaccionpComponent implements OnInit {
     });
   }
 
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.key == '*') {
+      this.limpiar();
+    }
+  }
+  
   limpiar(){
     this.identification = "";
   }

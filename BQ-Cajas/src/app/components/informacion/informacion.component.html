@@ -2,17 +2,6 @@
 <div class="col-12 screen-content">
   <div class="row">
     <div class="col">
-      <p style="text-align: right">Tipo de identificacion:</p>
-    </div>
-    <div class="col-2">
-      <select 
-      [(ngModel)]="tipoIdentificacion"
-      name="tipoIdentificacion" class="form-select">
-        <option value="CED">CED</option>
-        <option value="PAS">PAS</option>
-      </select>
-    </div>
-    <div class="col">
       <p style="text-align: right">Número de cedula:</p>
     </div>
     <div class="col-4">
@@ -23,8 +12,7 @@
         [(ngModel)]="this.identification"
         (keydown.Enter)="getClient()"
       />
-    </div>
-    
+    </div>    
     <div class="col-2">
       <button class="btn btn-primary" (click)="getClient()">VERIFICAR</button>
     </div>
