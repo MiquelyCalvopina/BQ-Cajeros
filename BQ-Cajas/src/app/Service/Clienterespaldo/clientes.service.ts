@@ -5,7 +5,7 @@ import { constants } from '../../constants';
 @Injectable({
   providedIn: 'root',
 })
-export class ClientsService {
+export class ServiceCliente {
 
   url = constants.clientsApi.url;
   constructor(private httpClient: HttpClient) {}

@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { ClientsService } from 'src/app/Service/Cliente/clientes.service';
+import { ServiceCliente } from 'src/app/Service/Cliente/service.cliente';
 import { ProductsService } from 'src/app/Service/Productos/products.service';
 import { Retiro } from '../../../Model/Retiro';
 import { ServiceRetiro } from '../../Service/retiro/service.retiro';
@@ -27,7 +27,7 @@ export class RetiroComponent implements OnInit {
   constructor(
     private service: ServiceRetiro,
     private messageService: MessageService,
-    private clientService: ClientsService,
+    private clientService: ServiceCliente,
     private productsService: ProductsService
   ) {}
 

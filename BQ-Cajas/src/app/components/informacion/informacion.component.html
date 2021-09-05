@@ -2,6 +2,17 @@
 <div class="col-12 screen-content">
   <div class="row">
     <div class="col">
+      <p style="text-align: right">Tipo de identificacion:</p>
+    </div>
+    <div class="col-2">
+      <select 
+      [(ngModel)]="tipoIdentificacion"
+      name="tipoIdentificacion" class="form-select">
+        <option value="CED">CED</option>
+        <option value="PAS">PAS</option>
+      </select>
+    </div>
+    <div class="col">
       <p style="text-align: right">Número de cedula:</p>
     </div>
     <div class="col-4">
@@ -13,8 +24,9 @@
         (keydown.Tab)="onKey($event)"
       />
     </div>
+    
     <div class="col-2">
-      <button class="btn btn-primary" (click)="send()">VERIFICAR</button>
+      <button class="btn btn-primary" (click)="verificar(tipoIdentificacion,identification)">VERIFICAR</button>
     </div>
   </div>
   <br />
@@ -23,16 +35,32 @@
   </div>
   <div class="row">
     <div class="col bold">
-      <p>Nombres</p>
-      <p>Apellidos</p>
+      <p>Nombre</p>
+      <p>Apellido</p>
       <p>Fecha de nacimiento</p>
       <p>Correo</p>
     </div>
     <div class="col">
-      <p>Carlos Ramiro</p>
-      <p>Villarreal Mendieta</p>
-      <p>06/09/97</p>
-      <p>terrycarlos@live.com</p>
+      <input
+      [(ngModel)]=cliente.nombre1
+      placeholder="Nombres"
+      name="nombres"
+      >  
+      <input
+      [(ngModel)]="cliente.apellidoPaterno"
+      placeholder="Apellidos"
+      name="apellidoPaterno"
+      >       
+      <input
+      [(ngModel)]="cliente.fechaNacimiento"
+      placeholder="fechaNacimiento"
+      name="fechaNacimiento"
+      >  
+      <input
+      [(ngModel)]="cliente.email"
+      placeholder="email"
+      name="email"
+      >  
     </div>
     <div class="col bold">
       <p>Dirección</p>
@@ -40,9 +68,21 @@
       <p>Celular</p>
     </div>
     <div class="col">
-      <p>Quito-Tumbaco</p>
-      <p>Soltero</p>
-      <p>098798565</p>
+      <input
+      [(ngModel)]="cliente.direccion"
+      placeholder="direccion"
+      name="direccion"
+      > 
+      <input
+      [(ngModel)]="cliente.estadoCivil"
+      placeholder="estadoCivil"
+      name="estadoCivil"
+      > 
+      <input
+      [(ngModel)]="cliente.telefono"
+      placeholder="telefono"
+      name="telefono"
+      > 
     </div>
   </div>
   <hr />
