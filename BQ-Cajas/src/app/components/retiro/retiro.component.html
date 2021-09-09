@@ -10,6 +10,7 @@
             [(ngModel)]="identification"
             type="text"
             name="cedula"
+            (input)="inputValidator($event)" 
             class="form-control"
             style="width: 12rem"
             (keydown.enter)="verificar()"
@@ -28,6 +29,7 @@
             type="text"
             [(ngModel)]="retiroSave.cuentaId"
             name="cuentaId"
+            (input)="inputValidator($event)" 
             class="form-control"
             style="width: 12rem"
             (keydown.enter)="verificar()"
@@ -70,6 +72,7 @@
           #saldo
           type="text"
           class="form-control"
+          (input)="inputValidator($event)" 
           aria-label="Amount (to the nearest dollar)"
           value="{{ account.saldo }}"
           readonly
@@ -89,6 +92,7 @@
     <input
       #monto
       type="text"
+      (input)="inputValidator($event)" 
       class="form-control"
       aria-label="Amount (to the nearest dollar)"
       [(ngModel)]="retiroSave.monto"

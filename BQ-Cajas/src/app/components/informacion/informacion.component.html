@@ -8,6 +8,7 @@
       <input
         type="text"
         class="form-control"
+        (input)="inputValidator($event)" 
         name="cedula"
         [(ngModel)]="this.identification"
         (keydown.Enter)="getClient()"

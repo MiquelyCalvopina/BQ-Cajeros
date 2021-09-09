@@ -9,6 +9,7 @@
         [(ngModel)]="identification"
         type="text"
         name="cedula"
+        (input)="inputValidator($event)" 
         class="form-control"
         (keydown.Enter)="getClient()"
         (keydown.Tab)="getClient()"
@@ -27,6 +28,7 @@
     <div class="col-4">
       <input
         type="text"
+        (input)="inputValidator($event)" 
         class="form-control"
         [(ngModel)]="depositoSave.cuentaId"
         (change) = "getProduct()"
@@ -56,6 +58,7 @@
           type="text"
           class="form-control"
           placeholder="00.00"
+          (input)="inputValidator($event)" 
           [(ngModel)]="depositoSave.monto"
           name="monto"
           (keydown.Enter)="enviar()"
