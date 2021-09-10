@@ -16,12 +16,13 @@ export class InformacionComponent implements OnInit {
   client!: Client;
   retiroSave!: Retiro;
   accounts: any = [];
+  validador:boolean=false;
 
   constructor(
     private messageService: MessageService,
     private clientService: ClientsService,
     private productsService: ProductsService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.retiroSave = new Retiro();
@@ -31,6 +32,7 @@ export class InformacionComponent implements OnInit {
   getClient() {
     this.client = new Client();
     this.accounts = [];
+    if(this.validadorDeCedula(this.identification))
     this.clientService.getClient('CED', this.identification).subscribe(
       (res) => {
         console.log('CLIENTE IDENTIFICADO: ' + JSON.stringify(res));
@@ -64,6 +66,15 @@ export class InformacionComponent implements OnInit {
         });
       }
     );
+    else
+    
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Cedula no valida',
+      });
+    
+  
   }
 
   getAccounts(id: string) {
@@ -99,7 +110,7 @@ export class InformacionComponent implements OnInit {
   }
   public inputValidator(event: any) {
     //console.log(event.target.value);
-    const pattern = /^[0-9]*$/;   
+    const pattern = /^[0-9]*$/;
     //let inputChar = String.fromCharCode(event.charCode)
     if (!pattern.test(event.target.value)) {
       event.target.value = event.target.value.replace(/[^0-9]/g, "");
@@ -109,5 +120,40 @@ export class InformacionComponent implements OnInit {
   }
 
 
-  
+  validadorDeCedula(cedula: String): any {
+ 
+    if (cedula.length == 10) {
+      let tercerDigito = parseInt(cedula.substring(2, 3));
+      if (tercerDigito < 6) {
+        // El ultimo digito se lo considera dígito verificador
+        let coefValCedula = [2, 1, 2, 1, 2, 1, 2, 1, 2];
+        let verificador = parseInt(cedula.substring(9, 10));
+        let suma: number = 0;
+        let digito: number = 0;
+        for (let i = 0; i < (cedula.length - 1); i++) {
+          digito = parseInt(cedula.substring(i, i + 1)) * coefValCedula[i];
+          suma += ((parseInt((digito % 10) + '') + (parseInt((digito / 10) + ''))));
+          //      console.log(suma+" suma"+coefValCedula[i]); 
+        }
+        suma = Math.round(suma);
+        //  console.log(verificador);
+        //  console.log(suma);
+        //  console.log(digito);
+        if ((Math.round(suma % 10) == 0) && (Math.round(suma % 10) == verificador)) {
+          return true;
+        } else if ((10 - (Math.round(suma % 10))) == verificador) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+         return false;
+      }
+    } else {
+      return false;
+    }
+   
+
+  }
+
 }
