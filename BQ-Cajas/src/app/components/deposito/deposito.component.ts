@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { ClientsService } from 'src/app/Service/Cliente/clientService.service';
-import { ProductsService } from 'src/app/Service/Productos/products.service';
+import { ClientsService } from 'src/app/Service/client.service';
+import { ProductsService } from 'src/app/Service/products.service';
 import { Client } from 'src/Model/Client';
 import { Deposito } from '../../../Model/Deposito';
 import { ServiceDeposito } from '../../Service/deposito/service.deposito';
@@ -71,7 +71,7 @@ export class DepositoComponent implements OnInit {
   }
 
   enviar() {
-    console.table(this.depositoSave);
+    console.table(this.depositoSave);    
     this.service.createDeposito(this.depositoSave).subscribe(
       (data) => {        
         this.messageService.add({
@@ -79,6 +79,7 @@ export class DepositoComponent implements OnInit {
           summary: 'Hecho',
           detail: 'Se ha registrado el deposito',
         });
+        this.limpiar();
     },
     (err) => {
       console.log("ERROR:"+JSON.stringify(err))

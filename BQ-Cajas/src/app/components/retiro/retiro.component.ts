@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { ServiceCliente } from 'src/app/Service/Cliente/service.cliente';
-import { ProductsService } from 'src/app/Service/Productos/products.service';
+import { ClientsService } from 'src/app/Service/client.service';
+import { ProductsService } from 'src/app/Service/products.service';
 import { Retiro } from '../../../Model/Retiro';
 import { ServiceRetiro } from '../../Service/retiro/service.retiro';
 
@@ -27,7 +27,7 @@ export class RetiroComponent implements OnInit {
   constructor(
     private service: ServiceRetiro,
     private messageService: MessageService,
-    private clientService: ServiceCliente,
+    private clientService: ClientsService,
     private productsService: ProductsService
   ) {}
 
@@ -143,7 +143,7 @@ export class RetiroComponent implements OnInit {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'Cuenta no encontrada',
+          detail: err.error.detail,
         });
       }
     );
@@ -157,6 +157,7 @@ export class RetiroComponent implements OnInit {
           summary: 'Retiro',
           detail: 'Registrado exitosamente',
         });
+        this.limpiar();
       },
       (err) => {
         this.messageService.add({
