@@ -1,12 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { constants } from '../../constants';
+import { constants } from '../constants';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ServiceCliente {
-
+export class ClientsService {
   url = constants.clientsApi.url;
   constructor(private httpClient: HttpClient) {}
 
@@ -35,5 +34,4 @@ export class ServiceCliente {
       }
     );
   }
-  
 }
