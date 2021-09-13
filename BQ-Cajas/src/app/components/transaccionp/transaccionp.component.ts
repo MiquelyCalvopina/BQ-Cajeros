@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { ClientsService } from 'src/app/Service/client.service';
+import { LoanService } from 'src/app/Service/loan.service';
 
 @Component({
   selector: 'app-transaccionp',
@@ -13,18 +15,26 @@ import { MessageService } from 'primeng/api';
 export class TransaccionpComponent implements OnInit {
 
   identification!: string;
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService, private clientService: ClientsService, private loanService: LoanService) { }
 
   ngOnInit(): void {
   }
 
-  onKey(event: any) {
-    console.log('enviar peticion: ' + this.identification);
-    this.messageService.add({
-      severity: 'warn',
-      summary: 'Consulta',
-      detail: 'Buscando cliente con CI ' + this.identification,
-    });
+  onIdentification() {
+    this.clientService.getClient('CED', this.identification).subscribe(
+      (res) => {
+        console.log('CLIENTE IDENTIFICADO: ' + JSON.stringify(res));
+        let clientIdentified: any = { ...res };
+        
+      },
+      (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err.error.detail,
+        });
+      }
+    );
   }
 
   enviar() {
@@ -44,6 +54,17 @@ export class TransaccionpComponent implements OnInit {
   
   limpiar(){
     this.identification = "";
+  }
+
+  getPrestamo(clientId: string){
+    this.loanService.getClientLoan(clientId).subscribe(
+      (res) => {
+        
+      },
+      (err) => {
+
+      }
+    );
   }
 
 }

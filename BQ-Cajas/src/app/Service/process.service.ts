@@ -33,5 +33,30 @@ export class ProcessService {
       headers,
     });
   }
-  
+
+  getCardStatus(cardId: string){
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    console.log(
+      this.url + 'creditCards/status/' + cardId + '/'
+    );
+    return this.httpClient.get(
+        this.url + 'creditCards/status/' + cardId + '/',
+      {
+        headers: headers,
+      }
+    );
+  }
+
+  payCardStatus(statusId: string){
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    console.log(
+      this.url + 'creditCards/status/' + statusId + '/pay/'
+    );
+    return this.httpClient.get(
+        this.url + 'creditCards/status/' + statusId + '/pay/',
+      {
+        headers: headers,
+      }
+    );
+  }
 }

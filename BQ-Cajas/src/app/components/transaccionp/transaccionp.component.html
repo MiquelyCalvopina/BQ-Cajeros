@@ -10,11 +10,12 @@
         class="form-control"
         name="cedula"
         [(ngModel)]="identification"
-        (keydown.Tab)="onKey($event)"
+        (keydown.Tab)="onIdentification()"
+        (keydown.Enter)="onIdentification()"
       />
     </div>
     <div class="col-2">
-      <button class="btn btn-primary" (click)="enviar()">VERIFICAR</button>
+      <button class="btn btn-primary" (click)="onIdentification()">VERIFICAR</button>
     </div>
   </div>
   <br />

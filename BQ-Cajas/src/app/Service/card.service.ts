@@ -21,5 +21,18 @@ export class CardService {
       }
     );
   }
+
+  getCard(cardId: string) {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    console.log(
+      this.url + 'tarjetaCliente/nroTarjeta/' + cardId + '/'
+    );
+    return this.httpClient.get(
+        this.url + 'tarjetaCliente/nroTarjeta/' + cardId + '/',
+      {
+        headers: headers,
+      }
+    );
+  }
   
 }

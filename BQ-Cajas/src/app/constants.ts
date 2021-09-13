@@ -12,10 +12,13 @@ const constants = {
       url: "http://52.234.160.244:8002/api/"
     },
     processApi: {
-      url: "http://52.151.203.48:8200/api/v1/"
+      url: "  http://52.151.203.48:8200/api/v1/"
     },
     pasivesApi: {
       url: 'http://52.146.55.208:8004/api/'
+    },
+    loanApi: {
+      url: "http://40.88.54.22:8005/api/"
     }
   };
   

@@ -20,11 +20,11 @@
         name="card"
         [(ngModel)]="tarjeta"
         class="form-control"
-        (keydown.Enter)="onCarNumber($event)"
+        (keydown.Enter)="onCarNumber()"
       />
     </div>
     <div class="col">
-      <button class="btn btn-primary" (click)="enviar()">VERIFICAR</button>
+      <button class="btn btn-primary" (click)="verificar()">VERIFICAR</button>
     </div>
     <div class="col" style="text-align: right">
       <p>Deuda:</p>
@@ -33,7 +33,7 @@
       <input
         type="text"
         name="deuda"
-        value="21.51"
+        [(ngModel)]="deuda"
         class="form-control"
         readonly
       />
