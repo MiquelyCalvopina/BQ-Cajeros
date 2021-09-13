@@ -3,7 +3,6 @@ import { MessageService } from 'primeng/api';
 import { ClientsService } from 'src/app/Service/client.service';
 import { ProductsService } from 'src/app/Service/products.service';
 import { Retiro } from '../../../Model/Retiro';
-import { ServiceRetiro } from '../../Service/retiro/service.retiro';
 
 @Component({
   selector: 'app-retiro',
@@ -24,8 +23,7 @@ export class RetiroComponent implements OnInit {
   @ViewChild('saldo') private saldo!: ElementRef;
   @ViewChild('monto') private monto!: ElementRef;
 
-  constructor(
-    private service: ServiceRetiro,
+  constructor(    
     private messageService: MessageService,
     private clientService: ClientsService,
     private productsService: ProductsService
@@ -150,7 +148,7 @@ export class RetiroComponent implements OnInit {
   }
 
   enviar() {
-    this.service.createRetiro(this.retiroSave).subscribe(
+    this.productsService.createWithdrawal(this.retiroSave).subscribe(
       (res) => {
         this.messageService.add({
           severity: 'success',
@@ -170,13 +168,9 @@ export class RetiroComponent implements OnInit {
     console.log('RETIRO:' + JSON.stringify(this.retiroSave));
   }
   public inputValidator(event: any) {
-    //console.log(event.target.value);
     const pattern = /^[0-9]*$/;   
-    //let inputChar = String.fromCharCode(event.charCode)
     if (!pattern.test(event.target.value)) {
       event.target.value = event.target.value.replace(/[^0-9]/g, "");
-      // invalid character, prevent input
-
     }
   }
 
@@ -193,12 +187,8 @@ export class RetiroComponent implements OnInit {
         for (let i = 0; i < (cedula.length - 1); i++) {
           digito = parseInt(cedula.substring(i, i + 1)) * coefValCedula[i];
           suma += ((parseInt((digito % 10) + '') + (parseInt((digito / 10) + ''))));
-          //      console.log(suma+" suma"+coefValCedula[i]); 
         }
         suma = Math.round(suma);
-        //  console.log(verificador);
-        //  console.log(suma);
-        //  console.log(digito);
         if ((Math.round(suma % 10) == 0) && (Math.round(suma % 10) == verificador)) {
           return true;
         } else if ((10 - (Math.round(suma % 10))) == verificador) {

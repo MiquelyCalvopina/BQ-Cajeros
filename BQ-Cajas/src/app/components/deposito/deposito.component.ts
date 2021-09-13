@@ -4,7 +4,6 @@ import { ClientsService } from 'src/app/Service/client.service';
 import { ProductsService } from 'src/app/Service/products.service';
 import { Client } from 'src/Model/Client';
 import { Deposito } from '../../../Model/Deposito';
-import { ServiceDeposito } from '../../Service/deposito/service.deposito';
 
 @Component({
   selector: 'app-deposito',
@@ -22,7 +21,6 @@ export class DepositoComponent implements OnInit {
   identification!: string;
   beneficiaryName!: string;
   constructor(
-    private service: ServiceDeposito,
     private messageService: MessageService,
     private clientService: ClientsService,
     private productsService: ProductsService
@@ -72,7 +70,7 @@ export class DepositoComponent implements OnInit {
 
   enviar() {
     console.table(this.depositoSave);    
-    this.service.createDeposito(this.depositoSave).subscribe(
+    this.productsService.createDeposit(this.depositoSave).subscribe(
       (data) => {        
         this.messageService.add({
           severity: 'success',

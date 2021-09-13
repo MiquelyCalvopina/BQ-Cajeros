@@ -6,10 +6,9 @@ import { User } from '../../../Model/User';
 import { OtpRQ } from '../../../Model/OtpRQ';
 import { ViewChild } from '@angular/core';
 import { OtpValidationRQ } from 'src/Model/OtpValRQ';
-
 import { ProcessService } from 'src/app/Service/process.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { ClientsService } from '../../Service/Cliente/clientService.service';
+import { ClientsService } from '../../Service/client.service';
 @Component({
   selector: 'app-autentificacion',
   templateUrl: './autentificacion.component.html',
