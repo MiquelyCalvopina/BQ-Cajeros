@@ -1,6 +1,6 @@
 const constants = {
     authApi: {      
-      url: "http://20.62.230.248:8100/api/v1/"      
+      url: "http://localhost:8080/api/v1/"      
     },
     cardsApi: {      
       url: "http://52.188.143.2:8003/api/"

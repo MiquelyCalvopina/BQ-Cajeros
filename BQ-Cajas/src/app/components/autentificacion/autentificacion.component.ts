@@ -68,37 +68,12 @@ export class AutentificacionComponent implements OnInit {
   }
 
   getClient(identifierType: string, identifier: string) {
-    this.clientService.getClient(identifierType, identifier).subscribe(
-      (res) => {
-        let response: any = { ...res };
-        this.display = true;
-        this.user = {
-          id: response.id,
-          tipoIdentificacion: response.tipoIdentificacion,
-          identificacion: response.identificacion,
-          fullName: response.nombre1 + " " + response.nombre2 + " " + response.apellidoPaterno + " " + response.apellidoMaterno,          
-          provincia: response.provincia,
-          canton: response.canton,
-          parroquia: response.parroquia,
-          direccion: response.direccion,
-          telefono: response.telefono,
-          email: response.email,
-          fechaNacimiento: response.fechaNacimiento,
-          estadoCivil: response.estadoCivil,
-          estadoBancaWeb: response.estadoBancaWeb,
-          estado: response.estado,
-        };
-        this.otp();
-      },
-      (err) => {
-        console.log('err ' + JSON.stringify(err));
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Usted no es cliente del banco',
-        });
-      }
-    );
+    this.messageService.add({
+      severity: 'success',
+      summary: 'bienvenida',
+      detail: 'BIENVENIDO',
+    });
+   location.href ="http://localhost:4200/system/info";
   }
 
   otp() {
