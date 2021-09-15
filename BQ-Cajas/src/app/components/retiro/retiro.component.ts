@@ -23,14 +23,14 @@ export class RetiroComponent implements OnInit {
   @ViewChild('saldo') private saldo!: ElementRef;
   @ViewChild('monto') private monto!: ElementRef;
 
-  constructor(    
+  constructor(
     private messageService: MessageService,
     private clientService: ClientsService,
     private productsService: ProductsService
   ) {}
 
   ngOnInit(): void {
-    this.retiroSave  = new Retiro();
+    this.retiroSave = new Retiro();
   }
 
   limpiar() {
@@ -95,8 +95,8 @@ export class RetiroComponent implements OnInit {
             console.log(products[product]);
             var type =
               products[product].productoPasivo.codProductoPasivo == 'GAN'
-                ? 'Cuenta ahorros'
-                : 'Cuenta ganadiario';
+                ? 'Cuenta ganadiario'
+                : 'Cuenta ahorros';
             var productObj = {
               cuentaTipo: type,
               cuentaId: products[product].cuentaId,
@@ -126,8 +126,8 @@ export class RetiroComponent implements OnInit {
         var product: any = { ...res };
         var type =
           product.productoPasivo.codProductoPasivo == 'GAN'
-            ? 'Cuenta ahorros'
-            : 'Cuenta ganadiario';
+            ? 'Cuenta ganadiario'
+            : 'Cuenta ahorros';
         var productObj = {
           cuentaTipo: type,
           cuentaId: product.cuentaId,
@@ -167,15 +167,22 @@ export class RetiroComponent implements OnInit {
     );
     console.log('RETIRO:' + JSON.stringify(this.retiroSave));
   }
-  public inputValidator(event: any) {
-    const pattern = /^[0-9]*$/;   
+
+  public inputNumberValidator(event: any) {
+    const pattern = /^[0-9]*$/;
     if (!pattern.test(event.target.value)) {
-      event.target.value = event.target.value.replace(/[^0-9]/g, "");
+      event.target.value = event.target.value.replace(/[^0-9]/g, '');
+    }
+  }
+
+  public inputDecimaValidator(event: any) {
+    const pattern = /^([0-9]+\.?[0-9]*|\.[0-9]+)$/;
+    if (!pattern.test(event.target.value)) {
+      event.target.value = event.target.value.replace(/[^0-9]/g, '');
     }
   }
 
   validadorDeCedula(cedula: String): any {
- 
     if (cedula.length == 10) {
       let tercerDigito = parseInt(cedula.substring(2, 3));
       if (tercerDigito < 6) {
@@ -184,26 +191,26 @@ export class RetiroComponent implements OnInit {
         let verificador = parseInt(cedula.substring(9, 10));
         let suma: number = 0;
         let digito: number = 0;
-        for (let i = 0; i < (cedula.length - 1); i++) {
+        for (let i = 0; i < cedula.length - 1; i++) {
           digito = parseInt(cedula.substring(i, i + 1)) * coefValCedula[i];
-          suma += ((parseInt((digito % 10) + '') + (parseInt((digito / 10) + ''))));
+          suma += parseInt((digito % 10) + '') + parseInt(digito / 10 + '');
         }
         suma = Math.round(suma);
-        if ((Math.round(suma % 10) == 0) && (Math.round(suma % 10) == verificador)) {
+        if (
+          Math.round(suma % 10) == 0 &&
+          Math.round(suma % 10) == verificador
+        ) {
           return true;
-        } else if ((10 - (Math.round(suma % 10))) == verificador) {
+        } else if (10 - Math.round(suma % 10) == verificador) {
           return true;
         } else {
           return false;
         }
       } else {
-         return false;
+        return false;
       }
     } else {
       return false;
     }
-   
-
   }
-
 }

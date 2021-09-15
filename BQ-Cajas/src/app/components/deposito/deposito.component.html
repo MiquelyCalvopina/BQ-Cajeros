@@ -58,7 +58,7 @@
           type="text"
           class="form-control"
           placeholder="00.00"
-          (input)="inputValidator($event)" 
+          (input)="inputDecimaValidator($event)" 
           [(ngModel)]="depositoSave.monto"
           name="monto"
           (keydown.Enter)="enviar()"

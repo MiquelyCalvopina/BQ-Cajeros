@@ -178,4 +178,11 @@ export class DepositoComponent implements OnInit {
       return false;
     }
   }
+
+  public inputDecimaValidator(event: any) {
+    const pattern = /^([0-9]+\.?[0-9]*|\.[0-9]+)$/;
+    if (!pattern.test(event.target.value)) {
+      event.target.value = event.target.value.replace(/[^0-9]/g, '');
+    }
+  }
 }

@@ -163,11 +163,19 @@ export class TransaccionpComponent implements OnInit {
     );
   }
 
+  public inputNumberValidator(event: any) {
+    const pattern = /^[0-9]*$/;
+    if (!pattern.test(event.target.value)) {
+      event.target.value = event.target.value.replace(/[^0-9]/g, '');
+    }
+  }
+  
   mountCalc(checked: boolean){    
     console.log(this.selectedQuotas);
     var mounts = new Array();
     this.selectedQuotas.forEach(element => mounts.push(parseFloat(element.split(';')[1])));
-    this.monto = mounts.reduce((partial_sum, a) => partial_sum + a, 0);    
+    this.monto = mounts.reduce((partial_sum, a) => partial_sum + a, 0); 
+    this.monto = parseFloat(this.monto.toFixed(2));
   }
 
   enviar(){

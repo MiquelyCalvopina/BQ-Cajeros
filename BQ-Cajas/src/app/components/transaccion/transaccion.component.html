@@ -12,6 +12,7 @@
         name="identification "
         [(ngModel)]="identification"
         class="form-control"
+        (input)="inputNumberValidator($event)" 
         (keydown.Enter)="onIdentification()"        
       />
       <br />
@@ -20,6 +21,7 @@
         name="card"
         [(ngModel)]="tarjeta"
         class="form-control"
+        (input)="inputNumberValidator($event)" 
         (keydown.Enter)="onCarNumber()"
       />
     </div>
@@ -64,6 +66,7 @@
           [(ngModel)] = "monto"
           class="form-control"
           aria-label="Amount (to the nearest dollar)"
+          (input)="inputDecimaValidator($event)" 
           (keydown.Enter) = "enviar()"
         />
       </div>

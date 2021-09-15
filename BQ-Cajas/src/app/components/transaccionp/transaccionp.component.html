@@ -10,6 +10,7 @@
         class="form-control"
         name="cedula"
         [(ngModel)]="identification"
+        (input)="inputNumberValidator($event)" 
         (keydown.Tab)="onIdentification()"
         (keydown.Enter)="onIdentification()"
       />
