@@ -187,15 +187,25 @@ export class TransaccionComponent implements OnInit {
   payTransaction(id: string, monto: number) {
     var obj = {
       codTarjetaCliente: id,
+      descripcion: 'Pago de tarjeta',
       monto: monto,
       tipo: 'PAG',
     };
     this.cardsService.cardTransaction(obj).subscribe(
       (res) => {
         console.log(res);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Éxtito',
+          detail: 'El pago se ha realizado',
+        });
       },
       (err) => {
-        console.log(err);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err.error.detail,
+        });
       }
     );
   }
