@@ -15,6 +15,7 @@ import { ClientsService } from '../../Service/client.service';
   styleUrls: ['./autentificacion.component.css'],
   providers: [MessageService]
 })
+
 export class AutentificacionComponent implements OnInit {
   username!: string;
   password!: string;
@@ -53,8 +54,9 @@ export class AutentificacionComponent implements OnInit {
     this.bqauthService.login(credentials).subscribe(
       (res) => {
         console.log('cuenta:' + JSON.stringify(res));
-        let account: any = { ...res };
-        this.getClient(account.identifierType, account.identifier);
+        let account: any = { ...res };        
+        sessionStorage.setItem('nombre',account.nombre);
+        this.router.navigate(["/system"]);
       },
       (err) => {
         console.log('err ' + JSON.stringify(err));
@@ -67,75 +69,4 @@ export class AutentificacionComponent implements OnInit {
     );
   }
 
-  getClient(identifierType: string, identifier: string) {
-    this.messageService.add({
-      severity: 'success',
-      summary: 'bienvenida',
-      detail: 'BIENVENIDO',
-    });
-   location.href ="http://localhost:4200/system/info";
-  }
-
-  otp() {
-    this.otpRQ = {
-      email: this.user.email,
-      fullName: this.user.fullName.toUpperCase(),
-      type: 'access_pin',
-    };
-    console.log('otpRquest:' + JSON.stringify(this.otpRQ));
-    this.processService.generateLogOTP(this.otpRQ).subscribe(
-      (res) => {
-        console.log('OTPRQ:' + JSON.stringify(res));
-        this.display = true;
-      },
-      (err) => {
-        console.log('OTPVAL:' + JSON.stringify(err));
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: err.error.detail,
-        });
-      }
-    );
-  }
-
-  onOtpChange(otp: string) {
-    this.otpPin = otp;
-  }
-
-  validateOtp() {
-    this.otpValRQ = {
-      email: this.user.email,
-      pin: this.otpPin,
-      type: 'access_pin',
-    };
-    console.log('validation:' + JSON.stringify(this.otpValRQ));
-    this.processService.validateLogOTP(this.otpValRQ).subscribe(
-      (res) => {
-        console.log('OTPVAL:' + JSON.stringify(res));
-        this.display = false;
-        sessionStorage.setItem(
-          'currentUserName',
-          this.user.fullName.toUpperCase()
-        );
-        sessionStorage.setItem(
-          'currentUserID',          
-            this.user.id
-        );
-        sessionStorage.setItem(
-          'currentUserEmail',          
-            this.user.email
-        );
-        this.router.navigate(['/welcome']);
-      },
-      (err) => {
-        console.log('OTPVAL:' + JSON.stringify(err));
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: err.error.detail,
-        });
-      }
-    );
-  }
 }

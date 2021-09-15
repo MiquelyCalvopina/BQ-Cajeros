@@ -36,7 +36,7 @@
       <p>
         {{ this.client.apellidoPaterno + " " + this.client.apellidoMaterno }}
       </p>
-      <p>{{ this.client.fechaNacimiento }}</p>
+      <p>{{ this.client.fechaNacimiento | date:'d MMM y' }}</p>
       <p>{{ this.client.email }}</p>
     </div>
     <div class="col bold">

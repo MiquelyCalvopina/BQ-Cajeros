@@ -47,13 +47,13 @@ export class ProcessService {
     );
   }
 
-  payCardStatus(statusId: string){
+  payCardStatus(statusId: string, paymentType: string){
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     console.log(
-      this.url + 'creditCards/status/' + statusId + '/pay/'
+      this.url + 'creditCards/status/' + statusId + '/pay/type/' + paymentType + '/'
     );
-    return this.httpClient.get(
-        this.url + 'creditCards/status/' + statusId + '/pay/',
+    return this.httpClient.post(
+        this.url + 'creditCards/status/' + statusId + '/pay/type/' + paymentType + '/',
       {
         headers: headers,
       }

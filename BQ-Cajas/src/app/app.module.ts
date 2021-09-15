@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ContainerComponent } from './container/container.component';
 import {TabMenuModule} from 'primeng/tabmenu';
+import {CheckboxModule} from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {TabMenuModule} from 'primeng/tabmenu';
     HttpClientModule,
     ToastModule,
     BrowserAnimationsModule,
-    TabMenuModule    
+    TabMenuModule    ,
+    CheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

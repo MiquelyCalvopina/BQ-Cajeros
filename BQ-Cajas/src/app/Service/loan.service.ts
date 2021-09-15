@@ -6,7 +6,7 @@ import { constants } from '../constants';
   providedIn: 'root',
 })
 export class LoanService {
-  url = constants.cardsApi.url;
+  url = constants.loanApi.url;
   constructor(private httpClient: HttpClient) {}
 
   getClientLoan(clientId: string) {
@@ -21,4 +21,25 @@ export class LoanService {
       }
     );
   }  
+
+  getQuotes(loanId: string){
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    console.log(
+      this.url + 'cuota/cuotaPrestamo/' + loanId + '/'
+    );
+    return this.httpClient.get(
+      this.url + 'cuota/cuotaPrestamo/' + loanId + '/',
+      {
+        headers: headers,
+      }
+    );
+  }
+
+  payQuote(body: any){
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    console.log(this.url+'cuota/pago/'+JSON.stringify(body));
+    return this.httpClient.put(this.url+'cuota/pago/', body, {
+      headers,
+    });
+  }
 }

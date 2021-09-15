@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { ProductsService } from 'src/app/Service/products.service';
 import { CardService } from 'src/app/Service/card.service';
 import { ClientsService } from 'src/app/Service/client.service';
 import { ProcessService } from 'src/app/Service/process.service';
@@ -17,8 +16,11 @@ import { ProcessService } from 'src/app/Service/process.service';
 export class TransaccionComponent implements OnInit {
   identification!: string;
   tarjeta!: string;
-  deuda!: string;
-  statudId!: string;
+  deuda!: number;
+  statusId!: string;
+  minimo!: number;
+  monto!: number;
+  cardId!: string;
 
   constructor(
     private messageService: MessageService,
@@ -35,6 +37,7 @@ export class TransaccionComponent implements OnInit {
         console.log('CLIENTE IDENTIFICADO: ' + JSON.stringify(res));
         let clientIdentified: any = { ...res };
         this.getCard(clientIdentified.id);
+        this.cardStatus(this.cardId);
       },
       (err) => {
         this.messageService.add({
@@ -48,14 +51,10 @@ export class TransaccionComponent implements OnInit {
 
   onCarNumber() {
     this.cardsService.getCard(this.tarjeta).subscribe(
-      (res) => {        
-        this.messageService.add({
-          severity: 'warn',
-          summary: 'Cargando',
-          detail: 'Realizando la búsqueda de la deuda',
-        });
-        let response:any = {...res}
+      (res) => {
+        let response: any = { ...res };
         this.cardStatus(response.codTarjetaCliente);
+        this.cardId = response.codTarjetaCliente;
       },
       (err) => {
         this.messageService.add({
@@ -70,7 +69,8 @@ export class TransaccionComponent implements OnInit {
   getCard(clientId: string) {
     this.cardsService.getClientCard(clientId).subscribe(
       (res) => {
-        console.log(JSON.stringify(res));
+        let response: any = { ...res };
+        this.cardId = response.codTarjetaCliente;
       },
       (err) => {
         this.messageService.add({
@@ -84,7 +84,7 @@ export class TransaccionComponent implements OnInit {
 
   verificar() {
     if (this.tarjeta == null && this.identification != null) {
-      this.onIdentification()
+      this.onIdentification();
     } else {
       this.onCarNumber();
     }
@@ -99,19 +99,34 @@ export class TransaccionComponent implements OnInit {
   limpiar() {
     this.tarjeta = '';
     this.identification = '';
-    this.deuda = '';
+    this.deuda = 0;
+    this.monto = 0;
+    this.statusId = '';
+    this.minimo = 0;
   }
 
-  enviar(){
-    //solo puede pagar lo que debe
-    this.processService.payCardStatus(this.statudId).subscribe(
+  enviar() {
+    console.log(this.monto);
+    var paymentType = '';
+    if (this.monto == this.minimo) {
+      paymentType = 'minimumPayment';
+      this.pay(this.statusId, paymentType);
+    } else if (this.monto == this.deuda) {
+      paymentType = 'totalPayment';
+      this.pay(this.statusId, paymentType);
+    } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Sólo puede pagar la deuda total o mínima',
+      });
+    }
+  }
+
+  pay(id: string, type: string) {
+    this.processService.payCardStatus(id, type).subscribe(
       (res) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Éxito',
-          detail: 'Pago realizado'
-        });
-        this.limpiar();
+        this.payTransaction(this.cardId, this.monto);
       },
       (err) => {
         this.messageService.add({
@@ -123,12 +138,27 @@ export class TransaccionComponent implements OnInit {
     );
   }
 
-  cardStatus(clientCardId: string){
+  cardStatus(clientCardId: string) {
     this.processService.getCardStatus(clientCardId).subscribe(
       (res) => {
-        let status:any = {...res}
-        this.deuda = parseFloat(status.totalCredit).toFixed(2);
-        this.statudId = status.id;
+        let cardStatus: any = { ...res };
+        var size = Object.keys(cardStatus).length;
+        for (let accountStatus of Object.keys(cardStatus)) {
+          size--;
+          if (cardStatus[accountStatus].state === 'Pending') {            
+            size++;
+            this.deuda = cardStatus[accountStatus].pendingAmount.toFixed(2);
+            this.minimo = cardStatus[accountStatus].minimumPayment.toFixed(2);
+            this.statusId = cardStatus[accountStatus].id;
+          }
+          if(size == 0){
+            this.messageService.add({
+              severity: 'warn',
+              summary: 'Atención',
+              detail: 'No tiene estados de cuenta pendientes',
+            });
+          }
+        }
       },
       (err) => {
         this.messageService.add({
@@ -136,6 +166,22 @@ export class TransaccionComponent implements OnInit {
           summary: 'Error',
           detail: err.error.detail,
         });
+      }
+    );
+  }
+
+  payTransaction(id: string, monto: number) {
+    var obj = {
+      codTarjetaCliente: id,
+      monto: monto,
+      tipo: 'PAG',
+    };
+    this.cardsService.cardTransaction(obj).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
       }
     );
   }

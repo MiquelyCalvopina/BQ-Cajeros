@@ -28,12 +28,22 @@
     </div>
     <div class="col" style="text-align: right">
       <p>Deuda:</p>
+      <br>
+      <p>Valor mínimo:</p>
     </div>
     <div class="col">
       <input
         type="text"
         name="deuda"
         [(ngModel)]="deuda"
+        class="form-control"
+        readonly
+      />
+      <br>
+      <input
+        type="text"
+        name="minimo"
+        [(ngModel)]="minimo"
         class="form-control"
         readonly
       />
@@ -45,7 +55,18 @@
       <p>Pago realizado</p>
     </div>
     <div class="col">
-      <input type="text" name="monto " class="form-control" />
+      <div class="input-group pago">
+        <div class="input-group-prepend">
+          <span class="input-group-text">$</span>
+        </div>
+        <input
+          type="text"
+          [(ngModel)] = "monto"
+          class="form-control"
+          aria-label="Amount (to the nearest dollar)"
+          (keydown.Enter) = "enviar()"
+        />
+      </div>
     </div>
     <div class="col"></div>
     <div class="col"></div>

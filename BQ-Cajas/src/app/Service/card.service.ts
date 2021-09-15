@@ -34,5 +34,16 @@ export class CardService {
       }
     );
   }
+
+  cardTransaction(transaccion: any){
+    let headers = new HttpHeaders().set(
+      'Type-content',
+      'application/json, charset=UTF-8'
+    );
+    console.log(this.url+'transaccion/'+JSON.stringify(transaccion));
+    return this.httpClient.post(this.url+'transaccion/', transaccion, {
+      headers,
+    });
+  }
   
 }

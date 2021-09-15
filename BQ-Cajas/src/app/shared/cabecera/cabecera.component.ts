@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cabecera',
@@ -7,12 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CabeceraComponent implements OnInit {
 
-  public user: any;
+  public userName: any;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.user = history.state.user;
+    this.userName = (sessionStorage.getItem('nombre')) ? sessionStorage.getItem('nombre') : 'INVITADO';
+  }
+
+  logout(){
+    sessionStorage.clear();
+    this.router.navigate(["/login"]);
   }
 
 }

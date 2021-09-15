@@ -32,46 +32,39 @@ export class InformacionComponent implements OnInit {
   getClient() {
     this.client = new Client();
     this.accounts = [];
-    if (this.validadorDeCedula(this.identification))
-      this.clientService.getClient('CED', this.identification).subscribe(
-        (res) => {
-          console.log('CLIENTE IDENTIFICADO: ' + JSON.stringify(res));
-          let clientIdentified: any = { ...res };
-          this.client = {
-            id: clientIdentified.id,
-            tipoIdentificacion: clientIdentified.tipoIdentificacion,
-            identificacion: clientIdentified.identificacion,
-            apellidoPaterno: clientIdentified.apellidoPaterno,
-            apellidoMaterno: clientIdentified.apellidoMaterno,
-            nombre1: clientIdentified.nombre1,
-            nombre2: clientIdentified.nombre2,
-            provincia: clientIdentified.provincia,
-            canton: clientIdentified.canton,
-            parroquia: clientIdentified.parroquia,
-            direccion: clientIdentified.direccion,
-            telefono: clientIdentified.telefono,
-            email: clientIdentified.email,
-            fechaNacimiento: clientIdentified.fechaNacimiento,
-            estadoCivil: clientIdentified.estadoCivil,
-            estadoBancaWeb: clientIdentified.estadoBancaWeb,
-            estado: clientIdentified.estado,
-          };
-          this.getAccounts(this.client.id);
-        },
-        (err) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: err.error.detail,
-          });
-        }
-      );
-    else
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'Cedula no valida',
-      });
+    this.clientService.getClient('CED', this.identification).subscribe(
+      (res) => {
+        console.log('CLIENTE IDENTIFICADO: ' + JSON.stringify(res));
+        let clientIdentified: any = { ...res };
+        this.client = {
+          id: clientIdentified.id,
+          tipoIdentificacion: clientIdentified.tipoIdentificacion,
+          identificacion: clientIdentified.identificacion,
+          apellidoPaterno: clientIdentified.apellidoPaterno,
+          apellidoMaterno: clientIdentified.apellidoMaterno,
+          nombre1: clientIdentified.nombre1,
+          nombre2: clientIdentified.nombre2,
+          provincia: clientIdentified.provincia,
+          canton: clientIdentified.canton,
+          parroquia: clientIdentified.parroquia,
+          direccion: clientIdentified.direccion,
+          telefono: clientIdentified.telefono,
+          email: clientIdentified.email,
+          fechaNacimiento: new Date(clientIdentified.fechaNacimiento),
+          estadoCivil: clientIdentified.estadoCivil,
+          estadoBancaWeb: clientIdentified.estadoBancaWeb,
+          estado: clientIdentified.estado,
+        };
+        this.getAccounts(this.client.id);
+      },
+      (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err.error.detail,
+        });
+      }
+    );
   }
 
   getAccounts(id: string) {
@@ -112,11 +105,10 @@ export class InformacionComponent implements OnInit {
     }
   }
 
-  validadorDeCedula(cedula: String): any {
+  validadorDeCedula(cedula: String) {
     if (cedula.length == 10) {
       let tercerDigito = parseInt(cedula.substring(2, 3));
       if (tercerDigito < 6) {
-        // El ultimo digito se lo considera dígito verificador
         let coefValCedula = [2, 1, 2, 1, 2, 1, 2, 1, 2];
         let verificador = parseInt(cedula.substring(9, 10));
         let suma: number = 0;
