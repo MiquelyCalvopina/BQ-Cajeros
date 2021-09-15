@@ -92,7 +92,8 @@ export class TransaccionpComponent implements OnInit {
       (res) => {
         let response:any = {...res}
         for(let loanItem of Object.keys(response)){
-          if(response[loanItem].estado == "PEN" || response[loanItem].estado == "NDS"){
+          console.log(response[loanItem]);
+          if(response[loanItem].estado == "PEN" || response[loanItem].estado == "NDS" || response[loanItem].estado == "DES"){
             this.debtLoans.push(response[loanItem]);
           }
         }
@@ -110,7 +111,8 @@ export class TransaccionpComponent implements OnInit {
     );
   }
 
-  setLoan() {        
+  setLoan() {
+    console.log(this.debtLoans);        
     console.log(this.debtLoans[this.clientSelectedLoanIndex]);
     console.log("PRESTAMO:"+this.debtLoans[this.clientSelectedLoanIndex].prestamo);
     this.clientSelectedLoan = {
