@@ -1,26 +1,25 @@
 const constants = {
-    authApi: {      
-      url: "http://52.149.205.159:8101/api/v1/"            
-    },
-    cardsApi: {      
-      url: "http://52.188.143.2:8003/api/"
-    },
-    civilRegApi: {
-      url: "http://20.85.192.181:8001/api/"
-    },
-    clientsApi: {
-      url: "http://52.234.160.244:8002/api/"
-    },
-    processApi: {
-      url: "http://52.151.203.48:8200/api/v1/"
-    },
-    pasivesApi: {
-      url: 'http://52.146.55.208:8004/api/'
-    },
-    loanApi: {
-      url: "http://40.88.54.22:8005/api/"
-    }
-  };
-  
-  export { constants };
-  
+  authApi: {
+    url: "http://34.125.102.171:8700/api/v1/"
+  },
+  cardsApi: {
+    url: "http://34.125.102.171:9400/api/"
+  },
+  civilRegApi: {
+    url: "http://34.125.102.171:9100/api/"
+  },
+  clientsApi: {
+    url: "http://34.125.102.171:9300/api/"
+  },
+  processApi: {
+    url: "http://34.125.102.171:8200/api/v1/"
+  },
+  pasivesApi: {
+    url: 'http://34.125.102.171:8501/api/'
+  },
+  loanApi: {
+    url: 'http://34.125.102.171:9000/api/'
+  }
+};
+
+export { constants };
